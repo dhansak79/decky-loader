@@ -47,6 +47,7 @@
     "rollup-plugin-visualizer": "^5.12.0",
     "tslib": "^2.6.3",
     "typescript": "^5.4.5",
+    "vite": "^8.2.2",
     "vitest": "^4.1.10"
   },
   "importSort": {
