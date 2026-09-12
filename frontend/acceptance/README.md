@@ -15,3 +15,8 @@ Run the examples with:
 pnpm exec playwright install chromium
 pnpm test:acceptance
 ```
+
+The suite writes a self-contained HTML report to `playwright-report/`.
+Screenshots are captured for every journey; videos and traces are retained for
+failed journeys. CI uploads the report and raw results as one downloadable
+artifact even when the test step fails.

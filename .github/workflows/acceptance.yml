@@ -1,0 +1,48 @@
+name: Browser Acceptance Tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  acceptance:
+    name: Run Playwright acceptance tests
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout 🧰
+        uses: actions/checkout@v4
+
+      - name: Set up NodeJS 20 💎
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install frontend dependencies ⬇️
+        working-directory: frontend
+        run: |
+          npm i -g pnpm
+          pnpm i --frozen-lockfile --dangerously-allow-all-builds
+
+      - name: Install Chromium and system dependencies 🌐
+        working-directory: frontend
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run browser acceptance tests 🧪
+        working-directory: frontend
+        run: pnpm test:acceptance
+
+      - name: Upload rich Playwright report ⬆️
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ github.run_attempt }}
+          path: |
+            frontend/playwright-report/
+            frontend/test-results/
+          if-no-files-found: warn
+          retention-days: 14
