@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    exclude: ['**/.stryker-tmp/**', '**/node_modules/**'],
+    exclude: ['**/.stryker-tmp/**', '**/node_modules/**', 'acceptance/**'],
     coverage: {
       exclude: ['**/.stryker-tmp/**'],
       include: ['src/plugin-importer.ts'],

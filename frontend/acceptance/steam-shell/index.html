@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decky acceptance shell</title>
+    <style>
+      :root {
+        color: #f5f5f5;
+        background: #101820;
+        font:
+          18px system-ui,
+          sans-serif;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+
+      main {
+        width: min(42rem, 90vw);
+      }
+
+      button {
+        margin: 0.35rem;
+        padding: 0.75rem 1rem;
+      }
+
+      #quick-access,
+      #decky-panel {
+        border: 1px solid #4b6575;
+        border-radius: 0.75rem;
+        padding: 1rem;
+      }
+
+      [hidden] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Steam Deck</h1>
+      <button id="open-quick-access" type="button">Open Quick Access</button>
+
+      <section id="quick-access" aria-label="Quick Access" hidden>
+        <button id="open-decky" type="button">Decky</button>
+        <section id="decky-panel" aria-label="Decky" hidden>
+          <h2>Sample Plugin</h2>
+          <button id="load-plugin" type="button">Load plugin</button>
+          <button id="load-slow-plugin" type="button">Load slow plugin</button>
+          <button id="load-aborted-plugin" type="button">Load externally aborted plugin</button>
+          <p id="status" role="status">Not loaded</p>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="/main.ts"></script>
+  </body>
+</html>
